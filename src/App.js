@@ -1,30 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-import {useState, useEffect} from 'react'
+import './App.css'
+import { useState, useEffect,} from 'react'; 
 
 function App() {
-  const [user, setUser] = useState([])
+  const [products, setProducts] = useState([])
   useEffect(() => {
-    fetch('http://localhost:5000/users')
-    .then(res => res.json()
-    .then(data => {
-      console.log(data)
-      setUser(data)
-    })
+    fetch('products.json').then((res) =>
+      res.json().then((data) => {
+        console.log(data)
+        setProducts(data)
+      })
     )
-  },[])
-  
+  }, [])
+
   return (
-    <> 
-    <section className = 'App'>
-      <h1>
-        {user.length}
-      </h1>
-         {user.map(person => <p key = {person.id}> {person.name} </p>)}
+    <>
+      <section className='App'>
+        <h1> This is the home pages Here </h1>
+        <h2> Total Products : {products.length} </h2>
       </section>
-      
     </>
-  );
+  )
 }
 
-export default App;
+export default App
